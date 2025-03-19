@@ -66,4 +66,18 @@ public class MainPage extends Page {
         wait.until(ExpectedConditions.elementToBeClickable(worldOfTanksProfileAnchor));
         worldOfTanksProfileAnchor.click();
     }
+
+    public void goToRegionSettings() {
+        WebElement regionSettings = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div/div[2]/a"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(regionSettings));
+        regionSettings.click();
+    }
+
+    public void chooseNewRegion() {
+        WebElement europeRegion = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div/div[2]/div[1]/div/div[3]/div[1]/div[2]/a[1]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(europeRegion));
+        europeRegion.click();
+    }
 }

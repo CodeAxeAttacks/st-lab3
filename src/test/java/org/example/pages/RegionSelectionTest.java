@@ -13,13 +13,13 @@ public class RegionSelectionTest {
     private WebDriver driver;
     private WebDriverWait wait;
     private final String BASE_URL = "https://worldoftanks.eu/ru/";
-    private final Duration TIMEOUT = Duration.ofSeconds(10);
+    private final Duration TIMEOUT = Duration.ofSeconds(15);
 
     @BeforeEach
     public void setup() {
-        FirefoxOptions options = new FirefoxOptions();
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        driver = new FirefoxDriver(options);
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        driver = new FirefoxDriver(firefoxOptions);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, TIMEOUT);
     }
@@ -27,21 +27,24 @@ public class RegionSelectionTest {
     @Test
     public void testRegionSelectionFlow() {
 
+        MainPage mainPage = new MainPage(driver);
+
         driver.get(BASE_URL);
 
         scrollToBottom();
 
-        WebElement regionSettings = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("/html/body/div[1]/div/div[4]/div/div[2]/a")
-        ));
-        regionSettings.click();
+        mainPage.goToRegionSettings();
 
-        WebElement europeRegion = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("/html/body/div[1]/div/div[4]/div/div[2]/div[1]/div/div[3]/div[1]/div[2]/a[1]")
-        ));
-        europeRegion.click();
+        mainPage.chooseNewRegion();
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         scrollToBottom();
+
+        mainPage.goToRegionSettings();
 
         WebElement regionTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("/html/body/div[1]/div/div[4]/div/div[2]/div[1]/div/div[1]")
