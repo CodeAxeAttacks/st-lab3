@@ -2,6 +2,8 @@ package org.example.pages;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,9 +19,9 @@ public class RegionSelectionTest {
 
     @BeforeEach
     public void setup() {
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        ChromeOptions firefoxOptions = new ChromeOptions();
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        driver = new FirefoxDriver(firefoxOptions);
+        driver = new ChromeDriver(firefoxOptions);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, TIMEOUT);
     }
