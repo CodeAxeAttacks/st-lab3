@@ -59,5 +59,4 @@ public class MainPage extends Page {
         wait.until(ExpectedConditions.elementToBeClickable(readAllAnchor));
         readAllAnchor.click();
     }
-
 }

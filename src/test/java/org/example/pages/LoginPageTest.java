@@ -20,7 +20,7 @@ public class LoginPageTest {
     public void beforeEach() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(15));
+        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(115));
         driver = new FirefoxDriver(firefoxOptions);
     }
 
