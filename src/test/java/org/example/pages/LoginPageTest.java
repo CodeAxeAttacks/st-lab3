@@ -20,7 +20,7 @@ public class LoginPageTest {
     public void beforeEach() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(115));
+        firefoxOptions.setImplicitWaitTimeout(Duration.ofSeconds(15));
         driver = new FirefoxDriver(firefoxOptions);
     }
 
@@ -30,7 +30,7 @@ public class LoginPageTest {
     }
 
     @Test
-    public void doCorrectLoginAndLogout() throws InterruptedException {
+    public void doCorrectLoginAndLogout() {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
 

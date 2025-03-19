@@ -4,6 +4,9 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +31,8 @@ public class AccountTest {
     public void testUserProfileAfterLogin() {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
+        AccountPage accountPage = new AccountPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.get(baseUrl);
         driver.manage().window().maximize();
@@ -44,14 +49,10 @@ public class AccountTest {
         mainPage.openUserWindow();
         mainPage.openUserWindow();
 
-        // Переход в профиль (с динамическим XPath)
-        WebElement profileLink = driver.findElement(
-                By.xpath("//*[starts-with(@id, 'cm') and contains(@id, '_user_menu')]/div[3]/div/ul/li[1]/a")
-        );
-        profileLink.click();
+        mainPage.goToWorldOfTanksProfile();
+        wait.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState === 'complete';"));
 
         // Проверка данных профиля
-        AccountPage accountPage = new AccountPage(driver);
         assertEquals("228loshpedik228", accountPage.getUsername());
         assertEquals("0", accountPage.getBattleCount());
     }

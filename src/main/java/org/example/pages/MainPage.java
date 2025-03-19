@@ -59,4 +59,11 @@ public class MainPage extends Page {
         wait.until(ExpectedConditions.elementToBeClickable(readAllAnchor));
         readAllAnchor.click();
     }
+
+    public void goToWorldOfTanksProfile() {
+        WebElement worldOfTanksProfileAnchor = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[3]/div/ul/li[1]/a"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(worldOfTanksProfileAnchor));
+        worldOfTanksProfileAnchor.click();
+    }
 }
