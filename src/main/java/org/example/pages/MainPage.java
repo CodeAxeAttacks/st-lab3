@@ -3,6 +3,11 @@ package org.example.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainPage extends Page {
 
@@ -16,6 +21,14 @@ public class MainPage extends Page {
         scrollDownButton.click();
     }
 
+    public boolean loginButtonIsDisplayed() {
+        WebElement loginButton = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.visibilityOf(loginButton));
+        return loginButton.isDisplayed();
+    }
+
     public void goToLogin() {
         WebElement loginButton = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]"));
         loginButton.click();
@@ -24,6 +37,27 @@ public class MainPage extends Page {
     public String getUserLogin() {
         WebElement userLoginSpan = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]"));
         return userLoginSpan.getText();
+    }
+
+    public void openUserWindow() {
+        WebElement userLoginSpan = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(userLoginSpan));
+        userLoginSpan.click();
+    }
+
+    public void doLogout() {
+        WebElement logoutButton = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[4]/div/div[1]/a"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(logoutButton));
+        logoutButton.click();
+    }
+
+    public void goToNews() {
+        WebElement readAllAnchor = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/section[1]/header/a"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(readAllAnchor));
+        readAllAnchor.click();
     }
 
 }

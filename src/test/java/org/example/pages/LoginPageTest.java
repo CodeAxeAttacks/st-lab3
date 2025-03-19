@@ -30,7 +30,7 @@ public class LoginPageTest {
     }
 
     @Test
-    public void doCorrectLogin() {
+    public void doCorrectLoginAndLogout() throws InterruptedException {
         MainPage mainPage = new MainPage(driver);
         LoginPage loginPage = new LoginPage(driver);
 
@@ -43,6 +43,14 @@ public class LoginPageTest {
         loginPage.doLogin("fewefw93@gmail.com", "Loshpedik228@");
 
         assertEquals("228loshpedik228", mainPage.getUserLogin());
+
+        // Из-за того, что робот быстро выполняет действия, меню пользователя не открывается (скорее всего, баг сайта)
+        mainPage.openUserWindow();
+        mainPage.openUserWindow();
+        mainPage.openUserWindow();
+        mainPage.doLogout();
+
+        assertTrue(mainPage.loginButtonIsDisplayed());
     }
 
     @Test
@@ -60,4 +68,5 @@ public class LoginPageTest {
 
         assertEquals("Неверный email или пароль.", loginPage.getLoginErrorMessage());
     }
+
 }
