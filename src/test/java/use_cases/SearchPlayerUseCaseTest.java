@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SearchPlayerUseCaseTest extends UseCaseTest {
 
     @Test
-    public void searchPlayer() {
+    public void searchPlayer() throws InterruptedException {
         for (WebDriver driver : drivers) {
             MainPage mainPage = new MainPage(driver);
             CommunityPage communityPage = new CommunityPage(driver);

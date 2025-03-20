@@ -2,7 +2,11 @@ package use_cases;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,9 +21,9 @@ import java.util.List;
 public abstract class UseCaseTest {
 
     protected final String baseUrl = "https://worldoftanks.eu/ru/";
-    protected final String nickaname = "228loshpedik228";
-    protected final String email = "fewefw93@gmail.com";
-    protected final String password = "Loshpedik228@";
+    protected final String nickaname = "xD_loshara_xD";
+    protected final String email = "loshara_krutoi@gmail.com";
+    protected final String password = "xD_loshara_xD1";
     protected long waitTimeoutSeconds;
 
     protected List<WebDriver> drivers;

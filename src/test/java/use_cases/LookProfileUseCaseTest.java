@@ -34,7 +34,7 @@ public class LookProfileUseCaseTest extends UseCaseTest {
             loginPage.fillForm(email, password);
 
             // Проверка пользователя на вход
-            WebElement loginSpan = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]"));
+            WebElement loginSpan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]")));
             assertEquals(loginSpan.getText(), nickaname);
 
             // Открытие дроп-даун меню пользователя и вход в профиль

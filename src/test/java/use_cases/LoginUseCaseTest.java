@@ -36,8 +36,8 @@ public class LoginUseCaseTest extends UseCaseTest {
             loginPage.fillForm(email, password);
 
             // Проверка пользователя на вход
-            WebElement loginSpan = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]"));
-            assertEquals(loginSpan.getText(), nickaname);
+            WebElement loginSpan = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div[2]/div[1]/div[1]/div/div[1]/div[1]/a[1]/div/span[1]")));
+            assertEquals(nickaname, loginSpan.getText());
 
             // Открытие дроп-даун меню пользователя и выход
             mainPage.dropDownUserMenu();
@@ -54,6 +54,7 @@ public class LoginUseCaseTest extends UseCaseTest {
         for (WebDriver driver : drivers) {
             MainPage mainPage = new MainPage(driver);
             LoginPage loginPage = new LoginPage(driver);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTimeoutSeconds));
 
             // Открытие основной страницы
             driver.get(baseUrl);
@@ -67,7 +68,7 @@ public class LoginUseCaseTest extends UseCaseTest {
             loginPage.fillForm("InvalidEmail@email.com", "InvalidPassword");
 
             // Проверка на вывод сообщения об ошибке
-            WebElement errorMessageDiv = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div/div[1]/form/div[1]/div"));
+            WebElement errorMessageDiv = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div/div/div/div[1]/form/div[1]/div")));
             assertTrue(errorMessageDiv.isDisplayed());
         }
     }

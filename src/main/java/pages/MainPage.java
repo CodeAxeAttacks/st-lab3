@@ -16,7 +16,8 @@ public class MainPage extends Page {
     }
 
     public void scrollDownWelcomePage() {
-        WebElement element = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/section/div[2]/button[1]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTimeoutSeconds));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div[3]/section/div[2]/button[1]")));
         element.click();
     }
 
