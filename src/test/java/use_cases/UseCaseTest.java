@@ -21,9 +21,9 @@ import java.util.List;
 public abstract class UseCaseTest {
 
     protected final String baseUrl = "https://worldoftanks.eu/ru/";
-    protected final String nickaname = "xD_loshara_xD";
-    protected final String email = "loshara_krutoi@gmail.com";
-    protected final String password = "xD_loshara_xD1";
+    protected String nickaname = "censored";
+    protected String email = "censored";
+    protected String password = "censored";
     protected long waitTimeoutSeconds;
 
     protected List<WebDriver> drivers;
@@ -43,6 +43,12 @@ public abstract class UseCaseTest {
                     chromeDriverIsPresent = true;
                 } else if (property.startsWith("wait-timeout-seconds")) {
                     waitTimeoutSeconds = Long.parseLong(property.split("=")[1]);
+                } else if (property.startsWith("nickname")) {
+                    nickaname = property.split("=")[1];
+                } else if (property.startsWith("email")) {
+                    email = property.split("=")[1];
+                } else if (property.startsWith("password")) {
+                    password = property.split("=")[1];
                 }
             }
             if (firefoxDriverIsPresent) {
